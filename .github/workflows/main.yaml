@@ -7,9 +7,9 @@ jobs:
   pre-steps:
     runs-on: ubuntu-latest
     steps:
-     - uses: actions/checkout@v2
-       with:
-         fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis  
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis  
     - name: exporting data to github env
       run: |
         echo "export GROUP_ID=$(less pom.xml | grep -i "groupId" | head -n 1 | grep -oP '(?<=<groupId>).*?(?=</groupId>)')" 
@@ -23,13 +23,14 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 11
+  
   build: 
     runs-on: ubuntu-latest
     needs: pre-steps
     steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis 
-      - name: mavenbuild
-        run: mvn clean package 
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis 
+    - name: mavenbuild
+      run: mvn clean package 
         
