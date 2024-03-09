@@ -37,5 +37,5 @@ jobs:
     - name: deploy to tomcat
       run: |
         ls -l 
-        curl -v -u jenkins:${{ secrets.TOMCAT_PASSWORD }} -T *.war 'http://${{ secrets.TOMCAT_HOST }}:8080/manager/text/deploy?path=/devops_demo1&update=true'
+        curl -v -u jenkins:${{ secrets.TOMCAT_PASSWORD }} -T target/*.war 'http://${{ secrets.TOMCAT_HOST }}:8080/manager/text/deploy?path=/devops_demo1&update=true'
         
